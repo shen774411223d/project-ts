@@ -1,7 +1,15 @@
-const config = {
-  dev: {},
-  prod: {},
-  stage: {}
+type UserAction = | {
+  id: number
+  action: 'delete'
+  info: any
+} | {
+  action: 'create'
+  info: any
 }
 
-type Props = keyof typeof config
+function UserReducer(userAction: UserAction) {
+  switch(userAction.action) {
+    case 'delete':
+      userAction.id
+  }
+}
