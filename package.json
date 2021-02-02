@@ -9,5 +9,8 @@
     "build:w": "tsc -w"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "reflect-metadata": "^0.1.13"
+  }
 }

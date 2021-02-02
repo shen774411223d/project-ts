@@ -1,20 +1,55 @@
-declare const config: {
-    dev: {};
-    prod: {};
-    stage: {};
+declare enum CONSTANTS {
+    ADD_TODO = "todo/add",
+    DELETE_TODO = "todo/delete"
+}
+declare const addTodo: (name: string, activity: any) => {
+    type: CONSTANTS;
+    payload: {
+        name: string;
+        activity: any;
+    };
 };
-declare type Props = keyof typeof config;
-declare const val: Props;
-interface FirstInterface {
-    doSomething(): number;
+declare const deleteTodo: (id: string) => {
+    type: CONSTANTS;
+    payload: {
+        id: string;
+    };
+};
+interface AddTodoAction {
+    type: CONSTANTS.ADD_TODO;
+    payload: {
+        name: string;
+        activity: {
+            [key: string]: any;
+        };
+    };
 }
-interface SecondInterface {
-    doSomethingElse(): string;
+interface DeleteTodoAction {
+    type: CONSTANTS.DELETE_TODO;
+    payload: {
+        id: string;
+    };
 }
-interface ChildInterface extends FirstInterface, SecondInterface {
-    doSomethingThree(): boolean;
+declare type Action = AddTodoAction | DeleteTodoAction;
+interface State {
+    todos: {
+        name: string;
+        id: string;
+    }[];
 }
-declare class Demo<T extends ChildInterface> {
-    private Fun;
-    use(): void;
-}
+declare const initState: () => State;
+declare function reducer(state: State | undefined, action: Action): {
+    name: string;
+    activity: {
+        [key: string]: any;
+    };
+    todos: {
+        name: string;
+        id: string;
+    }[];
+} | {
+    todos: {
+        name: string;
+        id: string;
+    }[];
+};
